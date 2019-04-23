@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Nexio.enums;
+﻿using System.Web.Mvc;
 using Nexio.Models;
 using Nexio.Services;
 
@@ -12,14 +7,10 @@ namespace Nexio.Controllers
     public class HomeController : Controller
     {
         private ResultValidator _resultValidator;
+
         public HomeController()
         {
             _resultValidator = ResultValidator.Instance;
-        }
-
-        public ActionResult Index()
-        {
-            return View();
         }
 
         [HttpGet]
@@ -31,8 +22,10 @@ namespace Nexio.Controllers
         [HttpPost]
         public ActionResult CreateWoman(PersonModel woman)
         {
-            _resultValidator.Clear();
-            if(ModelState.IsValid)
+            if (_resultValidator.Dic.Count != 0)
+                _resultValidator.Clear();
+            
+            if (ModelState.IsValid)
             {
                 _resultValidator.Dic.Add("woman", woman);
                 return RedirectToAction("CreateMan");
@@ -56,26 +49,11 @@ namespace Nexio.Controllers
             }
             return View(man);
         }
-        
+
         public ActionResult Result()
         {
             ViewBag.Message = _resultValidator.ValidateResult();
             _resultValidator.Clear();
-            return View();
-        }
-
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Height, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Height, new { @class = "form-control" } )
+                @Html.TextBoxFor(model => model.Height, new { @class = "form-control", @placeholder = "[m]" } )
                 @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.DateOfBirth, new { @class = "form-control" } )
+                @Html.TextBoxFor(model => model.DateOfBirth, new { @class = "form-control", @placeholder = "dd.MM.yy" } )
                 @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
             </div>
         </div>
