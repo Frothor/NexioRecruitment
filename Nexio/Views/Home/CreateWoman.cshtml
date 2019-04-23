@@ -1,6 +1,7 @@
 ﻿@using Nexio.enums;
 @model Nexio.Models.PersonModel
 
+@*<link href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />*@
 @{
     ViewBag.Title = "Kobieta";
 }
@@ -8,7 +9,7 @@
 <h2>@ViewBag.Title</h2>
 <hr />
 
-@using (Html.BeginForm("CreateWoman", "Home", FormMethod.Post ))
+@using (Html.BeginForm("CreateWoman", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -17,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" } )
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -25,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Height, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Height, new { @class = "form-control", @placeholder = "[m]" } )
+                @Html.TextBoxFor(model => model.Height, new { @class = "form-control", @placeholder = "[m]" })
                 @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -33,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.DateOfBirth, new { @class = "form-control", @placeholder = "dd.MM.yy" } )
+                @Html.TextBoxFor(model => model.DateOfBirth, new { @class = "form-control datepicker", @placeholder = "dd.MM.yy" })
                 @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -41,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EyeColor, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.EyeColor , new SelectList(Enum.GetValues(typeof(EyeColors))), new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.EyeColor, new SelectList(Enum.GetValues(typeof(EyeColors))), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.EyeColor, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -54,6 +55,18 @@
     </div>
 }
 
-@*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
+@section scripts
+    {
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "dd.mm.yy",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+}
+
